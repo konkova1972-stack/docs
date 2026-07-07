@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite --host 0.0.0.0",
+    "dev:server": "tsx watch server/index.ts",
+    "build": "tsc && vite build",
+    "start": "node dist-server/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "tailwindcss": "^3.4.17",
+    "express": "latest",
+    "cors": "latest",
+    "multer": "latest",
+    "better-sqlite3": "latest",
+    "nanoid": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest",
+    "concurrently": "latest"
+  }
+}
