@@ -1,0 +1,5 @@
+import Database from 'better-sqlite3';import{mkdirSync}from'fs';import path from'path';
+mkdirSync(path.join(process.cwd(),'server','uploads'),{recursive:true});export const db=new Database(path.join(process.cwd(),'sartrix.sqlite'));
+db.exec(`CREATE TABLE IF NOT EXISTS generations(id TEXT PRIMARY KEY, mode TEXT, prompt TEXT, uploaded_files TEXT, reference_video TEXT, settings TEXT, status TEXT, result_url TEXT, created_at TEXT, completed_at TEXT, favorite INTEGER DEFAULT 0);CREATE TABLE IF NOT EXISTS balance(id INTEGER PRIMARY KEY CHECK(id=1), free_generations_total INTEGER, free_generations_used INTEGER, credits_balance INTEGER, plan TEXT);`);
+const row=db.prepare('SELECT * FROM balance WHERE id=1').get();if(!row)db.prepare('INSERT INTO balance VALUES(1,3,1,125,\'Free\')').run();
+export const parseJob=(r:any)=>({...r,uploaded_files:JSON.parse(r.uploaded_files||'[]'),reference_video:r.reference_video?JSON.parse(r.reference_video):null,settings:JSON.parse(r.settings||'{}'),favorite:!!r.favorite});

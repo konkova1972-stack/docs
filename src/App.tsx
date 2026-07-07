@@ -1,0 +1,2 @@
+import{Route,Routes}from'react-router-dom';import Dashboard from './pages/Dashboard';import MyGenerations from './pages/MyGenerations';import Terms from './pages/Terms';import Privacy from './pages/Privacy';
+export default function App(){return <Routes><Route path="/" element={<Dashboard/>}/><Route path="/generations" element={<MyGenerations/>}/><Route path="/terms" element={<Terms/>}/><Route path="/privacy" element={<Privacy/>}/></Routes>}
